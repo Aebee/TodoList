@@ -1,0 +1,158 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="bstrap/css/bootstrap.min.css">
+    <style media="screen">
+      body { background: url('imgs/bg.jpg'); background-repeat: no-repeat; background-position: center center; background-attachment: fixed;
+          -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
+      textarea { width:100%; resize: none; }
+      table#tableData {
+        border-collapse:separate;
+        border:solid black 1px;
+        border-radius:15px;
+        -moz-border-radius:15px;
+      }
+      .tableHeader thead {
+        display: table-header-group;
+      }
+    </style>
+  </head>
+  <body class="container">
+    <!-- Page header-->
+    <div class="jumbotron" style="border-radius: 2px 100px 0px; padding-top:19px; padding-bottom:6px;">
+      <div class="container">
+        <h2>Taskboard</h2>
+        <!-- Launch how to use modal -->
+        <button type="button" class="btn btn-info" name="button" data-toggle="modal" data-target="#myModal">Todolist Quick Guide</button>
+        <button type="button" name="button" class="btn btn-primary" id="shortcutsBtn">Enable Shortcuts</button>
+      </div>
+    </div>
+    <!-- End of Page header-->
+
+      <!-- Add tasks panel-->
+    <a role="button" data-toggle="collapse" href="#collapsePanel" aria-expanded="false" aria-controls="collapsePanel">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Click to add a new task"></span>
+    </a><br />
+    <div class="collapse" id="collapsePanel">
+      <div>
+        <textarea cols="2" rows="2" maxlength="140" id="textArea" style="border-radius: 0px 15px 0px"> </textarea>
+        <br /><br />
+        <div class="btn-group pull-right" role="group">
+          <button type="button" id="saveBtn" class="btn btn-success">Save</button>
+          <button type="button" id="cancelBtn" class="btn btn-danger" href="#collapsePanel" aria-expanded="false" data-toggle="collapse" aria-controls="collapsePanel">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <br /><br />
+          <!-- End of tasks panel -->
+
+    <hr id="lineID">
+
+    <!-- find task within rows -->
+    <div class="row" style="padding-top:1px;">
+      <div class="col-md-10 col-md-offset-2">
+        <div class="form-group has-feedback pull-right">
+            <input type="text" class="form-control" id="searchField" value='' placeholder="Search" />
+            <i class="glyphicon glyphicon-search form-control-feedback"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- End of search field-->
+
+    <!-- Table that includes all of the tasks-->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive" style="border-radius:10px/30px;">
+          <table class="table" id="tableData" style="background-color:rgba(238, 238, 238, 0.44); color:white; border-radius: 2px 0px 0px; font-size: x-large;">
+            <thead>
+            <tr>
+              <th></th>
+              <th><h3><span class="label label-default">Date</span><h3></th>
+              <th><h3><span class="label label-default">Task</span><h3></th>
+              <th><h3><span class="label label-default">Done</span><h3></th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+
+          </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- End of tasks table-->
+
+
+    <!-- tutorial modal-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Quick Guide</h4>
+          </div>
+          <div class="modal-body">
+          <p>The application is fairly easy to use. In the following sections, you will know how to use it properly and avoid any possible errors</p>
+          <hr>
+          <h3>~ Add Task</h3>
+          <p>To add a task you can either use keyboard shortcuts or click the + sign. The plus sign (+) can be found under the header. Click on it and a text area and two buttons will appear.</p>
+          <h4>~ Adding Tasks</h4>
+          <p>You can add multiple tasks at the same time separating them by a semicolon (;) or you could just add one task without using the semicolon.</p>
+          <h4>~ Adding Task Format</h4>
+          <p>For a single task the format is: taskname by taskdate. Example: Go running by 2.2.2013 .<hr><h4><b>Please note</b> that date format must be as in the example. Using 2/2/2015, 2-2-2015 or even 2.20.2015, will cause an error and task will not be added to database. The date format is day.month.year or d.m.y <br /> <br /> <b>Also</b>, remember that the word "by" is the keyword to add a task. The word must be added between the task name and the task date as shown in the examples</h4></p><hr>
+          <h4>~ Adding Multiple Tasks</h4>
+          <p> To add multple tasks, using the following format: taskname by taskdate; secondtaskname by taskdate. Example: Go running by 2.2.2015; do laundry by 2.2.2015.</p>
+          <hr>
+          <h3>~ HashTags #</h3>
+          <p>Adding a task starts by a hashtag (#) will render it as an anchor in the tasks table. By clicking on it, it will filter or show all tasks that has the same hashtag. To add a task with hashtag, #taskname by 2.2.2015. Example: #go running by 2.2.2015</p>
+          <hr>
+          <h3>~ Keyboard Shortcuts</h3>
+          <p>Keyboard shortcuts can be either enabled or disabled. By default shortcuts are enabled. To disable it, there is a button that toggles between enable and disable.</p>
+          <p>Available shortcuts are, shift + s to save task/tasks, shift + c will cancel adding the task, shift + f will shift the focus to the search input, and shift + t will open the panel and show textarea to add tasks.</p>
+          <hr>
+          <h3>~ Search Input</h3>
+          <p>Search input should help you filter through your lists. Type the task name and it will be the only task to appear on your list. To show all tasks, empty the search input field -- remove all the letters you have entered.</p>
+          <hr>
+          <h3>~ Delete Button</h3>
+          <p>Delete button will completely remove task from the database table, and it cannot be restored.</p>
+          <hr>
+          <h3>~ Task Done Button</h3>
+          <p>Task Done button will remove the task from tasks list but it will remain into the database. To show completed task, type "show-completed-tasks" in the search field. This will popup a list of all the tasks that you have completed, and to remove them entirely from the database, click on the button Delete.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End tutorial modal-->
+    <div class="modal fade" id="tasksModal" tabindex="-1" role="dialog" aria-labelledby="tasksModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="tasksModalLabel">List of Completed Task(s)</h4>
+          </div>
+          <div class="modal-body">
+            <table class="table table-striped" id="completedTasksTable">
+              <thead>
+              <tr>
+                <th>Completed Task(s)</th>
+                <th>Completed Task(s) Date</th>
+              </tr>
+            </thead>
+            <tbody id="completedTasksBody">
+
+            </tbody>
+            </table>
+            <button type="button" name="button" id="deleteAllFinishedTasks" class="btn btn-danger pull-right">Delete All Finished Tasks</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <script src="res/js/jquery-2.1.4.min.js"></script>
+    <script src="res/js/bootstrap.min.js"></script>
+    <script src="res/js/myJavaScript.js"></script>
+    <script src="res/js/js.cookie.js"></script>
+  </body>
+</html>
